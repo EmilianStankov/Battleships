@@ -1,0 +1,4 @@
+*.vs/
+/ShipGame/bin/*
+/ShipGame/obj/*
+

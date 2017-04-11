@@ -8,9 +8,9 @@ namespace BattleShips.Models
 {
     public class Point
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public Point(int x,int y)
+        public byte X { get; set; }
+        public byte Y { get; set; }
+        public Point(byte x, byte y)
         {
             X = x;
             Y = y;

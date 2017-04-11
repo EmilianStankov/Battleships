@@ -10,6 +10,7 @@ namespace BattleShips
     {
         static void Main(string[] args)
         {
+          
         }
     }
 }

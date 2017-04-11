@@ -11,8 +11,7 @@ namespace BattleShips.Algorithms
     {
         //private Matrix ocean;
         protected short[] ships = new short[7] { 1, 1, 2, 2, 3, 3, 4 };
-        private string[,] ocean = new string[8, 8];
-        private byte[,] oceanmanol = new byte[8, 8];
+        private byte[,] ocean = new byte[8, 8];
 
 
         private byte onezoneship = 0;
@@ -21,146 +20,66 @@ namespace BattleShips.Algorithms
         private byte fourzoneship = 0;
 
 
-
         public void AddShip(Ship ship)
         {
-            //vars
-            byte startPointx = (byte)ship.StartPoint.X;
-            byte startPointy = (byte)ship.StartPoint.Y;
-            byte endPointx = (byte)ship.EndPoint.X;
-            byte endPointy = (byte)ship.EndPoint.Y;
-            byte count = 0;
-            ocean[startPointx, startPointy] = "S";
-            oceanmanol[startPointx, startPointy] = 2;
-            ocean[endPointx, endPointy] = "S";
-            oceanmanol[endPointx, endPointy] = 2;
-            
-
-            //one zone ship
-            if (startPointx==endPointx && startPointy==endPointy)                            
+            if (ship.StartPoint.X == ship.EndPoint.X)
             {
-                ocean[startPointx, startPointy] = "S";
-                oceanmanol[startPointx, startPointy] = 2;
-
-                onezoneship++;                                                              
-            }
-
-
-            // horizontal ship
-            if (startPointy == endPointy && startPointx != endPointx)                       
-            {
-
-                if (startPointx > endPointx)
+                if ((ship.StartPoint.Y - ship.EndPoint.Y) > 0)
                 {
-                    for (byte epx = (byte)(endPointx + 1); epx < startPointx; epx++)
+                    for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
                     {
-                        count++;
-                        ocean[epx, startPointy] = "S";
-                        oceanmanol[epx, startPointy] = 2;
-                        if (count == 1)treezoneship++;
-                        if (count == 2)fourzoneship++;
+                        ocean[ship.StartPoint.X, y] = 2;
                     }
-                    if (count == 0)twozoneship++;
-                    
-                    count = 0;
                 }
-
-
-                if (startPointx < endPointx)
+                else
                 {
-                    for (byte spx = (byte)(startPointx + 1); spx < endPointx; spx++)
+                    for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
                     {
-                        count++;
-                        ocean[spx, startPointy] = "S";
-                        oceanmanol[spx, startPointy] = 2;
-                        if (count == 1)treezoneship++;
-                        if (count == 2)fourzoneship++;
+                        ocean[ship.StartPoint.X, y] = 2;
                     }
-                    if (count == 0) twozoneship++;
-                    count = 0;
-                    
-                       
                 }
             }
-
-
-
-
-            // vertical ship
-            if(startPointx == endPointx && startPointy != endPointy)                        
+            else
             {
-
-                if (startPointy > endPointy)
+                if ((ship.StartPoint.X - ship.EndPoint.X) > 0)
                 {
-                    for (byte epy = (byte)(endPointy + 1); epy < startPointy; epy++)
+                    for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
                     {
-                        count++;
-                        ocean[startPointx,epy] = "S";
-                        oceanmanol[startPointx,epy] = 2;
-                        if (count == 1) treezoneship++;
-                        if (count == 2) fourzoneship++;
+                        ocean[x, ship.StartPoint.Y] = 2;
                     }
-                    if (count == 0) twozoneship++;
-                    count = 0;
+                }
+                else
+                {
+                    for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
+                    {
+                        ocean[x, ship.StartPoint.Y] = 2;
+                    }
                 }
             }
-
-                if (startPointy < endPointy) 
-                {
-                    for (byte spy = (byte)(startPointy + 1); spy < endPointy;spy++)
-                    {
-                        count++;
-                        if (count == 1) treezoneship++;
-                        if (count == 2) fourzoneship++;
-                        ocean[startPointx,spy] = "S";
-                        oceanmanol[startPointx,spy] = 2;
-                    }
-                    if (count == 0) twozoneship++;
-                    count = 0;
-            }
-
         }
 
-
-
-
-
-
-
-        // is the ship damaged
-        public bool HitPoint(Point point)  
+        public bool HitPoint(Point point)
         {
-            byte pointx = (byte)point.X;
-            byte pointy = (byte)point.Y;
-            if (oceanmanol[pointx,pointy] == 2)
-            {
-                oceanmanol[pointx, pointy] = 3;
-            }
-            
-            return true;
-        }
-
-
-
-
-
-        // can u make a ship 
-        public bool CheckShip(Ship ship)
-        {
-            if (onezoneship > 2)
+            if(ocean[point.X,point.Y]==3)
             {
                 return false;
             }
-
-                return true;
+            else
+            {
+                ocean[point.X, point.Y] = 3;
+            }
+            return true;
         }
 
+        public bool CheckShip(Ship ship)
+        {
+           // if()
+            return true;
+        }
 
-
-
-        //can u hit this point (again)
         public bool CheckPoint(Point point)
         {
+            if (ocean[point.X, point.Y] == 3) return false;
             return true;
         }
     }

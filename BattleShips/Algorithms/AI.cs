@@ -52,36 +52,42 @@ namespace BattleShips.Algorithms
             if (lastSuccess)
             {
                 bool succes = false;
+                bool isValid = false;
                 Point newPoint = new Point(0, 0);
                 int r = rnd.Next(0, 3);
                 if (r == 0)
                 {
                     newPoint = new Point((byte)(lastPoint.X + 1), lastPoint.Y);
-                    if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
+                    isValid = CheckPoint(newPoint);
+                    if (isValid) succes = HitPoint(newPoint);
                     else r++;
                 }
                 if (r == 1)
                 {
                     newPoint = new Point((byte)(lastPoint.X - 1), lastPoint.Y);
-                    if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
+                    isValid = CheckPoint(newPoint);
+                    if (isValid) succes = HitPoint(newPoint);
                     else r++;
                 }
-                if (r == 1)
+                if (r == 2)
                 {
                     newPoint = new Point(lastPoint.X, (byte)(lastPoint.Y + 1));
-                    if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
+                    isValid = CheckPoint(newPoint);
+                    if (isValid) succes = HitPoint(newPoint);
                     else r++;
                 }
-                if (r == 1)
+                if (r == 3)
                 {
                     newPoint = new Point(lastPoint.X, (byte)(lastPoint.Y - (byte)1));
-                    if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
+                    isValid = CheckPoint(newPoint);
+                    if (isValid) succes = HitPoint(newPoint);
                     else r++;
                 }
                 lastPoint = newPoint;
                 lastSuccess = succes;
+                if (!isValid) lastSuccess = false;
             }
-            else
+            if(!lastSuccess)
             {
                 Point point;
                 do

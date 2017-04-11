@@ -16,21 +16,21 @@ namespace BattleShips.Algorithms
 
         public void AddShip(Ship ship)
         {
-            int startPointx=ship.StartPoint.X;
-            int startPointy=ship.StartPoint.Y;
-            int endPointx=ship.EndPoint.X;
-            int endPointy=ship.EndPoint.Y;
+            byte startPointx=(byte)ship.StartPoint.X;
+            byte startPointy= (byte)ship.StartPoint.Y ;
+            byte endPointx= (byte)ship.EndPoint.X;
+            byte endPointy= (byte)ship.EndPoint.Y;
             if(startPointx==endPointx && startPointy==endPointy) //one zone ship
             {
                 ocean[startPointx, startPointy] = "S";
                 oceanmanol[startPointx, startPointy] = 2;
 
             }
-            if (startPointy == endPointy) // horizontal ship
+            if (startPointy == endPointy)                       // horizontal ship
             {
                 if (startPointx > endPointx) 
                 {
-                    int epx = endPointx;
+                    byte epx = endPointx;
                     while (epx < startPointx) 
                     {
                         epx++;
@@ -40,7 +40,7 @@ namespace BattleShips.Algorithms
                 }
                 else
                 {
-                    int spx = startPointx;
+                    byte spx = startPointx;
                     while (spx < endPointx)
                     {
                         spx++;
@@ -49,8 +49,29 @@ namespace BattleShips.Algorithms
                     }
                 }
             }
-          //  if()
-
+            if(startPointx == endPointx)                        // vertical ship
+            {
+                if (startPointy > endPointy)
+                {
+                    byte epy = endPointy;
+                    while (epy < startPointy)
+                    {
+                        epy++;
+                        ocean[startPointx,epy] = "S";
+                        oceanmanol[startPointx,epy] = 2;
+                    }
+                }
+            }
+            else
+            {
+                byte spy = startPointy;
+                while (spy < endPointy)
+                {
+                    spy++;
+                    ocean[startPointx,spy] = "S";
+                    oceanmanol[startPointx,spy] = 2;
+                }
+            }
 
         }
 

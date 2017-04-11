@@ -16,10 +16,10 @@ namespace BattleShips.Algorithms
 
         public void AddShip(Ship ship)
         {
-            byte startPointx=0;
-            byte startPointy=3;
-            byte endPointx=5;
-            byte endPointy=9;
+            int startPointx=ship.StartPoint.X;
+            int startPointy=ship.StartPoint.Y;
+            int endPointx=ship.EndPoint.X;
+            int endPointy=ship.EndPoint.Y;
             if(startPointx==endPointx && startPointy==endPointy) //one zone ship
             {
                 ocean[startPointx, startPointy] = "S";
@@ -30,7 +30,7 @@ namespace BattleShips.Algorithms
             {
                 if (startPointx > endPointx) 
                 {
-                    byte epx = endPointx;
+                    int epx = endPointx;
                     while (epx < startPointx) 
                     {
                         epx++;
@@ -40,7 +40,7 @@ namespace BattleShips.Algorithms
                 }
                 else
                 {
-                    byte spx = startPointx;
+                    int spx = startPointx;
                     while (spx < endPointx)
                     {
                         spx++;

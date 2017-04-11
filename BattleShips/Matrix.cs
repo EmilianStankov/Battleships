@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace BattleShips
 {
+
+
     class Matrix
     {
+        // 0- empty
+        // 1- not empty
+        // 2- ship
+        // 3- damaged ship
         public byte[,] Ocean = new byte[8, 8];
         public byte[,] Initialise(byte x, byte y)
         {

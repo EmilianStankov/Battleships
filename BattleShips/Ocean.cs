@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShips
 {
-    class Program
+    class Ocean
     {
-        static void Main(string[] args)
-        {
-
-        }
     }
 }

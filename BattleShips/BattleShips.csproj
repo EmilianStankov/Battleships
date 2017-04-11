@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Algorithms\AI.cs" />
     <Compile Include="Algorithms\Player.cs" />
-    <Compile Include="Matrix.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Ship.cs" />
     <Compile Include="Matrix.cs" />

@@ -9,6 +9,8 @@ namespace BattleShips.Algorithms
 {
     public abstract class Player
     {
+        //private Matrix ocean;
+        protected short[] ships = new short[7] { 1, 1, 2, 2, 3, 3, 4 };
         private string[,] ocean = new string[8, 8];
         private byte[,] oceanmanol = new byte[8, 8];
 
@@ -52,9 +54,18 @@ namespace BattleShips.Algorithms
 
         }
 
-        public void HitPoint(Point point)
+        public bool HitPoint(Point point)
         {
+            return true;
+        }
 
+        public bool CheckShip(Ship ship)
+        {
+            return true;
+        }
+        public bool CheckPoint(Point point)
+        {
+            return true;
         }
     }
 }

@@ -47,6 +47,7 @@ namespace BattleShips.Algorithms
                     }
                 }
             }
+          //  if()
 
 
         }

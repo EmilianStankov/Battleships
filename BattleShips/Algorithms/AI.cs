@@ -19,20 +19,20 @@ namespace BattleShips.Algorithms
             {
                 while (true)
                 {
-                    int x = rnd.Next(0, 7);
-                    int y = rnd.Next(0, 7);
+                    byte x = (byte)rnd.Next(0, 7);
+                    byte y = (byte)rnd.Next(0, 7);
                     int axis = rnd.Next(0, 1);
-                    int x1, y1;
+                    byte x1, y1;
                     Ship newShip;
                     if (axis == 1)
                     {
-                        x1 = rnd.Next(-ships[br], ships[br]);
+                        x1 = (byte)rnd.Next(-ships[br], ships[br]);
                         y1 = 0;
                     }
                     else
                     {
                         x1 = 0;
-                        y1 = rnd.Next(-ships[br], ships[br]);
+                        y1 = (byte)rnd.Next(-ships[br], ships[br]);
                     }
                     newShip = new Ship(new Point(x, y), new Point(x1, y1));
                     if (CheckShip(newShip))
@@ -54,25 +54,25 @@ namespace BattleShips.Algorithms
                 int r = rnd.Next(0, 3);
                 if (r == 0)
                 {
-                    newPoint = new Point(lastPoint.X + 1, lastPoint.Y);
+                    newPoint = new Point((byte)(lastPoint.X + 1), lastPoint.Y);
                     if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
                     else r++;
                 }
                 if (r == 1)
                 {
-                    newPoint = new Point(lastPoint.X - 1, lastPoint.Y);
+                    newPoint = new Point((byte)(lastPoint.X - 1), lastPoint.Y);
                     if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
                     else r++;
                 }
                 if (r == 1)
                 {
-                    newPoint = new Point(lastPoint.X, lastPoint.Y + 1);
+                    newPoint = new Point(lastPoint.X, (byte)(lastPoint.Y + 1));
                     if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
                     else r++;
                 }
                 if (r == 1)
                 {
-                    newPoint = new Point(lastPoint.X, lastPoint.Y - 1);
+                    newPoint = new Point(lastPoint.X,(byte)( lastPoint.Y - (byte)1));
                     if (CheckPoint(newPoint)) succes = HitPoint(newPoint);
                     else r++;
                 }
@@ -84,8 +84,8 @@ namespace BattleShips.Algorithms
                 Point point;
                 do
                 {
-                    int x = rnd.Next(0, 7);
-                    int y = rnd.Next(0, 7);
+                    byte x = (byte)rnd.Next(0, 7);
+                    byte y = (byte)rnd.Next(0, 7);
                     point = new Point(x, y);
                 }
                 while (!CheckPoint(point));

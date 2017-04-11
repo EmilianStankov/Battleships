@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleShips.Algorithms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BattleShips
     {
         static void Main(string[] args)
         {
-          
+            
         }
     }
 }

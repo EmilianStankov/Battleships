@@ -12,7 +12,6 @@ namespace BattleShips.Models
 
         public Point EndPoint { get; set; }
        
-       
         public Ship(Point startPoint,Point endPoint)
         {
             StartPoint = startPoint;

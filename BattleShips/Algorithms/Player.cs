@@ -17,7 +17,7 @@ namespace BattleShips.Algorithms
 
         protected void AddShip(Ship ship)
         {
-            Console.WriteLine("x="+ship.StartPoint.X+" "+ship.StartPoint.Y+"y="+ship.EndPoint.X+" "+ship.EndPoint.Y);
+            //Console.WriteLine("x="+ship.StartPoint.X+" "+ship.StartPoint.Y+"y="+ship.EndPoint.X+" "+ship.EndPoint.Y);
             if (ship.StartPoint.X == ship.EndPoint.X)
             {
                 if ((ship.StartPoint.Y - ship.EndPoint.Y) > 0)

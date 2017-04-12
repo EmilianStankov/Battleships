@@ -8,6 +8,6 @@ namespace BattleShips.Algorithms
 {
     public class User : Player
     {
-
+        
     }
 }

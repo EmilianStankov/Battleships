@@ -58,36 +58,36 @@ namespace BattleShips.Algorithms
                 if (r == 0)
                 {
                     newPoint = new Point((lastPoint.X + 1), lastPoint.Y);
-                    isValid = Game.CheckPoint(newPoint,true);
-                    if (isValid) succes = Game.HitPoint(newPoint,true);
+                    isValid = Game.CheckPoint(newPoint, true);
+                    if (isValid) succes = Game.HitPoint(newPoint, true);
                     else r++;
                 }
                 if (r == 1)
                 {
                     newPoint = new Point((lastPoint.X - 1), lastPoint.Y);
-                    isValid = Game.CheckPoint(newPoint,true);
-                    if (isValid) succes = Game.HitPoint(newPoint,true);
+                    isValid = Game.CheckPoint(newPoint, true);
+                    if (isValid) succes = Game.HitPoint(newPoint, true);
                     else r++;
                 }
                 if (r == 2)
                 {
                     newPoint = new Point(lastPoint.X, (lastPoint.Y + 1));
-                    isValid = Game.CheckPoint(newPoint,true);
-                    if (isValid) succes = Game.HitPoint(newPoint,true);
+                    isValid = Game.CheckPoint(newPoint, true);
+                    if (isValid) succes = Game.HitPoint(newPoint, true);
                     else r++;
                 }
                 if (r == 3)
                 {
                     newPoint = new Point(lastPoint.X, (lastPoint.Y - 1));
-                    isValid = Game.CheckPoint(newPoint,true);
-                    if (isValid) succes = Game.HitPoint(newPoint,true);
+                    isValid = Game.CheckPoint(newPoint, true);
+                    if (isValid) succes = Game.HitPoint(newPoint, true);
                     else r++;
                 }
                 lastPoint = newPoint;
                 lastSuccess = succes;
                 if (!isValid) lastSuccess = false;
             }
-            if(!lastSuccess)
+            if (!lastSuccess)
             {
                 Point point;
                 do
@@ -96,8 +96,8 @@ namespace BattleShips.Algorithms
                     int y = rnd.Next(0, 8);
                     point = new Point(x, y);
                 }
-                while (!Game.CheckPoint(point,true));
-                lastSuccess = Game.HitPoint(point,true);
+                while (!Game.CheckPoint(point, true));
+                lastSuccess = Game.HitPoint(point, true);
                 lastPoint = point;
             }
         }

@@ -12,9 +12,6 @@ namespace BattleShips
         static void Main(string[] args)
         {
             Game.Run();
-            //AI ai = new AI();
-            //ai.GenerateShips();
-            //Console.ReadKey(true);
         }
     }
 }

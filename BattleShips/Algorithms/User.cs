@@ -24,7 +24,7 @@ namespace BattleShips.Algorithms
                             Console.WriteLine("Enter point:");
                             string text = Console.ReadLine();
                             string[] array = text.Split(' ');
-                            Point point = new Point(int.Parse(array[1])-1, (char.Parse(array[0]) - 65));
+                            Point point = new Point(int.Parse(array[1]) - 1, (char.Parse(array[0]) - 65));
                             Ship ship = new Ship(point, point);
                             if (CheckShip(ship))
                             {
@@ -43,15 +43,15 @@ namespace BattleShips.Algorithms
 
                         try
                         {
-                            Console.WriteLine("Create {0}-zone ship.",s);
+                            Console.WriteLine("Create {0}-zone ship.", s);
                             Console.WriteLine("Enter startpoint:");
                             string text = Console.ReadLine();
                             text += " ";
                             Console.WriteLine("Enter endpoint:");
                             text += Console.ReadLine();
                             string[] array = text.Split(' ');
-                            Point startPoint = new Point(int.Parse(array[1])-1, (char.Parse(array[0]) - 65));
-                            Point endPoint = new Point(int.Parse(array[3])-1, (char.Parse(array[2]) - 65));
+                            Point startPoint = new Point(int.Parse(array[1]) - 1, (char.Parse(array[0]) - 65));
+                            Point endPoint = new Point(int.Parse(array[3]) - 1, (char.Parse(array[2]) - 65));
                             Ship ship = new Ship(startPoint, endPoint);
                             if (CheckShip(ship) && (ship.Size == s))
                             {
@@ -76,10 +76,10 @@ namespace BattleShips.Algorithms
                     Console.WriteLine("Enter point to hit:");
                     string text = Console.ReadLine();
                     string[] array = text.Split(' ');
-                    Point point = new Point( int.Parse(array[1])-1, (char.Parse(array[0]) - 65));
-                    if (Game.CheckPoint(point,false))
+                    Point point = new Point(int.Parse(array[1]) - 1, (char.Parse(array[0]) - 65));
+                    if (Game.CheckPoint(point, false))
                     {
-                        Game.HitPoint(point,false);
+                        Game.HitPoint(point, false);
                         break;
                     }
                 }

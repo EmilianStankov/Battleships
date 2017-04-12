@@ -20,7 +20,7 @@ namespace BattleShips.Algorithms
             for (int br = 0; br < o.Length; br++)
             {
                 o[br] = new byte[n];
-                for(int br2=0;br2<o[br].Length;br2++)
+                for (int br2 = 0; br2 < o[br].Length; br2++)
                 {
                     o[br][br2] = 0;
                 }
@@ -67,10 +67,11 @@ namespace BattleShips.Algorithms
             }
         }
 
-        
+
         //Check can you add a ship
         protected bool CheckShip(Ship ship)
         {
+            if ((ship.StartPoint.X != ship.EndPoint.X) && (ship.StartPoint.Y != ship.EndPoint.Y)) return false;
             if (!ValidatePoint(ship.StartPoint) || !ValidatePoint(ship.EndPoint)) return false;
             if (ship.StartPoint.X == ship.EndPoint.X)
             {

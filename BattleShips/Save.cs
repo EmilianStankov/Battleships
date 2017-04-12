@@ -7,12 +7,12 @@ using System.IO;
 
 namespace BattleShips
 {
-    class Save
+    public static class Save
     {
 
-        static StringBuilder data = new StringBuilder();
+        private static StringBuilder data = new StringBuilder();
 
-        static public void Stage(string turn)
+        public static void Stage(string turn)
         {
 
             if (turn.Equals("GameOver"))

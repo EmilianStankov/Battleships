@@ -43,14 +43,23 @@ namespace BattleShips.Algorithms
 
         public static bool HitPoint(Point point, bool source)
         {
+            bool success = false;
             byte[][] ocean;
             if (!source) ocean = ai.ocean;
             else ocean = user.ocean;
-            if (ocean[point.X][point.Y] == 2) ocean[point.X][point.Y] = 3;
-            if (ocean[point.X][point.Y] == 0) ocean[point.X][point.Y] = 1;
+            if (ocean[point.X][point.Y] == 2)
+            {
+                ocean[point.X][point.Y] = 3;
+                success = true;
+            }
+            if (ocean[point.X][point.Y] == 0)
+            {
+                ocean[point.X][point.Y] = 1;
+                success = false;
+            }
             if (!source) ai.ocean = ocean;
             else user.ocean = ocean;
-            return true;
+            return success;
         }
         public static bool CheckPoint(Point point, bool source)
         {
@@ -60,7 +69,7 @@ namespace BattleShips.Algorithms
                 ocean = ai.ocean;
                 if (ai.ValidatePoint(point))
                 {
-                    if ((ocean[point.X][point.Y] == 3)|| (ocean[point.X][point.Y] == 1)) return false;
+                    if ((ocean[point.X][point.Y] == 3) || (ocean[point.X][point.Y] == 1)) return false;
                     else return true;
                 }
                 else return false;

@@ -29,6 +29,7 @@ namespace BattleShips.Algorithms
                             if (CheckShip(ship))
                             {
                                 AddShip(ship);
+                                Save.Stage(string.Format("User create 1-zone ship with x={0} and y={1}.", point.X, point.Y));
                                 break;
                             }
                         }
@@ -56,6 +57,7 @@ namespace BattleShips.Algorithms
                             if (CheckShip(ship) && (ship.Size == s))
                             {
                                 AddShip(ship);
+                                Save.Stage(string.Format("User create {0}-zone ship with startpoint(x={1} and y={2}) and endpoint(x={3} and y={4}).",s, startPoint.X, startPoint.Y,endPoint.X,endPoint.Y));
                                 break;
                             }
                         }
@@ -80,6 +82,7 @@ namespace BattleShips.Algorithms
                     if (Game.CheckPoint(point, false))
                     {
                         Game.HitPoint(point, false);
+                        Save.Stage(string.Format("User hit the point with x={0} and y={1}.", point.X, point.Y));
                         break;
                     }
                 }

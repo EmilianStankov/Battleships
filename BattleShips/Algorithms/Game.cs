@@ -22,15 +22,17 @@ namespace BattleShips.Algorithms
             while (true)
             {
                 user.HitNewPoint();
-                if (user.IsLose())
-                {
-                    Console.WriteLine("YOU LOSE!");
-                    break;
-                }
-                ai.HitNewPoint();
                 if (ai.IsLose())
                 {
                     Console.WriteLine("YOU WIN!");
+                    Save.Stage("GameOver");
+                    break;
+                }
+                ai.HitNewPoint();
+                if (user.IsLose())
+                {
+                    Console.WriteLine("YOU LOSE!");
+                    Save.Stage("GameOver");
                     break;
                 }
                 UpdateOcean();

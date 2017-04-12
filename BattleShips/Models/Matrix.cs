@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BattleShips
+namespace BattleShips.Models
 {
-
 
     class Matrix
     {

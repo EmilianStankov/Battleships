@@ -40,6 +40,7 @@ namespace BattleShips.Algorithms
                     if (CheckShip(newShip))
                     {
                         AddShip(newShip);
+                        Save.Stage(string.Format("AI create {0}-zone ship with startpoint(x={1} and y={2}) and endpoint(x={3} and y={4}).",ships[br], newShip.StartPoint.X, newShip.StartPoint.Y, newShip.EndPoint.X, newShip.EndPoint.Y));
                         break;
                     }
                 }
@@ -86,6 +87,7 @@ namespace BattleShips.Algorithms
                 lastPoint = newPoint;
                 lastSuccess = succes;
                 if (!isValid) lastSuccess = false;
+                else Save.Stage(string.Format("AI hit the point with x={0} and y={1}.", newPoint.X, newPoint.Y));
             }
             if (!lastSuccess)
             {
@@ -99,6 +101,7 @@ namespace BattleShips.Algorithms
                 while (!Game.CheckPoint(point, true));
                 lastSuccess = Game.HitPoint(point, true);
                 lastPoint = point;
+                Save.Stage(string.Format("AI hit the point with x={0} and y={1}.", point.X, point.Y));
             }
         }
     }

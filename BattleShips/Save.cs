@@ -20,9 +20,9 @@ namespace BattleShips
                 DateTime now = DateTime.Now;
                 string b = now.ToString();
                 StringBuilder folder = new StringBuilder("Session" + b.ToString() + ".txt");
-                folder.Replace(@"/","_");
+                folder.Replace(@"/", "_");
                 folder.Replace(":", "_");
-                StreamWriter writer = new StreamWriter(folder.ToString(),false);
+                StreamWriter writer = new StreamWriter(folder.ToString(), false);
                 using (writer)
                 {
                     writer.Write(data);

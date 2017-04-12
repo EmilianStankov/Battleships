@@ -11,7 +11,9 @@ namespace BattleShips
     {
         static void Main(string[] args)
         {
-
+            AI ai = new AI();
+            ai.GenerateShips();
+            Console.ReadKey(true);
         }
     }
 }

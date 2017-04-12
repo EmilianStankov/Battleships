@@ -10,32 +10,28 @@ namespace BattleShips.Algorithms
     public abstract class Player
     {
         //private Matrix ocean;
+        private static int n = 8;
         protected short[] ships = new short[7] { 1, 1, 2, 2, 3, 3, 4 };
-        private byte[,] ocean = new byte[8, 8];
+        private List<List<byte>> ocean = Enumerable.Repeat(Enumerable.Repeat((byte)0, n).ToList(), n).ToList();
 
 
-        private byte onezoneship = 0;
-        private byte twozoneship = 0;
-        private byte treezoneship = 0;
-        private byte fourzoneship = 0;
-
-
-        public void AddShip(Ship ship)
+        protected void AddShip(Ship ship)
         {
+            Console.WriteLine("x="+ship.StartPoint.X+" "+ship.StartPoint.Y+"y="+ship.EndPoint.X+" "+ship.EndPoint.Y);
             if (ship.StartPoint.X == ship.EndPoint.X)
             {
                 if ((ship.StartPoint.Y - ship.EndPoint.Y) > 0)
                 {
                     for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
                     {
-                        ocean[ship.StartPoint.X, y] = 2;
+                        ocean[ship.StartPoint.X][y] = 2;
                     }
                 }
                 else
                 {
                     for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
                     {
-                        ocean[ship.StartPoint.X, y] = 2;
+                        ocean[ship.StartPoint.X][y] = 2;
                     }
                 }
             }
@@ -45,42 +41,82 @@ namespace BattleShips.Algorithms
                 {
                     for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
                     {
-                        ocean[x, ship.StartPoint.Y] = 2;
+                        ocean[x][ship.StartPoint.Y] = 2;
                     }
                 }
                 else
                 {
                     for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
                     {
-                        ocean[x, ship.StartPoint.Y] = 2;
+                        ocean[x][ship.StartPoint.Y] = 2;
                     }
                 }
             }
         }
 
-        public bool HitPoint(Point point)
+        protected bool HitPoint(Point point)
         {
-            if(ocean[point.X,point.Y]==3)
+            if (ocean[point.X][point.Y] == 3)
             {
                 return false;
             }
             else
             {
-                ocean[point.X, point.Y] = 3;
+                ocean[point.X][point.Y] = 3;
             }
             return true;
         }
-
-        public bool CheckShip(Ship ship)
+        //Check can you add a ship
+        protected bool CheckShip(Ship ship)
         {
-           // if()
+            if (!ValidatePoint(ship.StartPoint) || !ValidatePoint(ship.EndPoint)) return false;
+            if (ship.StartPoint.X == ship.EndPoint.X)
+            {
+                if ((ship.StartPoint.Y - ship.EndPoint.Y) > 0)
+                {
+                    for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
+                    {
+                        if (ocean[ship.StartPoint.X][y] == 2) return false;
+                    }
+                }
+                else
+                {
+                    for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
+                    {
+                        if (ocean[ship.StartPoint.X][y] == 2) return false;
+                    }
+                }
+            }
+            else
+            {
+                if ((ship.StartPoint.X - ship.EndPoint.X) > 0)
+                {
+                    for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
+                    {
+                        if (ocean[x][ship.StartPoint.Y] == 2) return false;
+                    }
+                }
+                else
+                {
+                    for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
+                    {
+                        if (ocean[x][ship.StartPoint.Y] == 2) return false;
+                    }
+                }
+            }
             return true;
         }
-
-        public bool CheckPoint(Point point)
+        //Check can you hit a point
+        protected bool CheckPoint(Point point)
         {
-            if (ocean[point.X, point.Y] == 3) return false;
-            return true;
+            if ((ocean[point.X][point.Y] == 3) || (ValidatePoint(point))) return false;
+            else return true;
+        }
+
+        private bool ValidatePoint(Point point)
+        {
+            if ((point.X < 0) || (point.X > ocean.Count - 1) || (point.Y < 0) || (point.Y > ocean.Count - 1)) return false;
+            else return true;
         }
     }
 }

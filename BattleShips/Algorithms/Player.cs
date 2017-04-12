@@ -12,8 +12,21 @@ namespace BattleShips.Algorithms
         //private Matrix ocean;
         private static int n = 8;
         protected short[] ships = new short[7] { 1, 1, 2, 2, 3, 3, 4 };
-        private List<List<byte>> ocean = Enumerable.Repeat(Enumerable.Repeat((byte)0, n).ToList(), n).ToList();
+        public byte[][] ocean = SetStartValue();//= Enumerable.Repeat(Enumerable.Repeat((byte)0, n).ToArray(), n).ToArray();
 
+        private static byte[][] SetStartValue()
+        {
+            byte[][] o = new byte[n][];
+            for (int br = 0; br < o.Length; br++)
+            {
+                o[br] = new byte[n];
+                for(int br2=0;br2<o[br].Length;br2++)
+                {
+                    o[br][br2] = 0;
+                }
+            }
+            return o;
+        }
 
         protected void AddShip(Ship ship)
         {
@@ -22,14 +35,14 @@ namespace BattleShips.Algorithms
             {
                 if ((ship.StartPoint.Y - ship.EndPoint.Y) > 0)
                 {
-                    for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
+                    for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
                     {
                         ocean[ship.StartPoint.X][y] = 2;
                     }
                 }
                 else
                 {
-                    for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
+                    for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
                     {
                         ocean[ship.StartPoint.X][y] = 2;
                     }
@@ -39,14 +52,14 @@ namespace BattleShips.Algorithms
             {
                 if ((ship.StartPoint.X - ship.EndPoint.X) > 0)
                 {
-                    for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
+                    for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
                     {
                         ocean[x][ship.StartPoint.Y] = 2;
                     }
                 }
                 else
                 {
-                    for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
+                    for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
                     {
                         ocean[x][ship.StartPoint.Y] = 2;
                     }
@@ -54,18 +67,7 @@ namespace BattleShips.Algorithms
             }
         }
 
-        protected bool HitPoint(Point point)
-        {
-            if (ocean[point.X][point.Y] == 3)
-            {
-                return false;
-            }
-            else
-            {
-                ocean[point.X][point.Y] = 3;
-            }
-            return true;
-        }
+        
         //Check can you add a ship
         protected bool CheckShip(Ship ship)
         {
@@ -74,14 +76,14 @@ namespace BattleShips.Algorithms
             {
                 if ((ship.StartPoint.Y - ship.EndPoint.Y) > 0)
                 {
-                    for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
+                    for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
                     {
                         if (ocean[ship.StartPoint.X][y] == 2) return false;
                     }
                 }
                 else
                 {
-                    for (int y = ship.StartPoint.Y; y >= ship.EndPoint.Y; y--)
+                    for (int y = ship.StartPoint.Y; y <= ship.EndPoint.Y; y++)
                     {
                         if (ocean[ship.StartPoint.X][y] == 2) return false;
                     }
@@ -91,14 +93,14 @@ namespace BattleShips.Algorithms
             {
                 if ((ship.StartPoint.X - ship.EndPoint.X) > 0)
                 {
-                    for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
+                    for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
                     {
                         if (ocean[x][ship.StartPoint.Y] == 2) return false;
                     }
                 }
                 else
                 {
-                    for (int x = ship.StartPoint.X; x >= ship.EndPoint.X; x--)
+                    for (int x = ship.StartPoint.X; x <= ship.EndPoint.X; x++)
                     {
                         if (ocean[x][ship.StartPoint.Y] == 2) return false;
                     }
@@ -107,15 +109,21 @@ namespace BattleShips.Algorithms
             return true;
         }
         //Check can you hit a point
-        protected bool CheckPoint(Point point)
+        public bool IsLose()
         {
-            if ((ocean[point.X][point.Y] == 3) || (ValidatePoint(point))) return false;
-            else return true;
+            foreach (var line in ocean)
+            {
+                foreach (var item in line)
+                {
+                    if (item == 2) return false;
+                }
+            }
+            return true;
         }
 
-        private bool ValidatePoint(Point point)
+        public bool ValidatePoint(Point point)
         {
-            if ((point.X < 0) || (point.X > ocean.Count - 1) || (point.Y < 0) || (point.Y > ocean.Count - 1)) return false;
+            if ((point.X < 0) || (point.X > ocean.Length - 1) || (point.Y < 0) || (point.Y > ocean.Length - 1)) return false;
             else return true;
         }
     }

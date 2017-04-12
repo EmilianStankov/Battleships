@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\AI.cs" />
+    <Compile Include="Algorithms\Game.cs" />
     <Compile Include="Algorithms\Player.cs" />
+    <None Include="Cin.cs" />
+    <None Include="Cout.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Ship.cs" />
     <Compile Include="Matrix.cs" />

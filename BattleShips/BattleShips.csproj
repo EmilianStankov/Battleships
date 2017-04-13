@@ -47,7 +47,6 @@
     <Compile Include="Algorithms\Player.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Ship.cs" />
-    <Compile Include="Models\Matrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Algorithms\User.cs" />

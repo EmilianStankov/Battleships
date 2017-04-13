@@ -34,6 +34,7 @@ namespace BattleShips.Algorithms
                             }
                         }
                         catch (Exception) { }
+                        Game.UpdateOcean();
                         Console.WriteLine("Try again");
                     }
                 }
@@ -62,6 +63,7 @@ namespace BattleShips.Algorithms
                             }
                         }
                         catch (Exception) { }
+                        Game.UpdateOcean();
                         Console.WriteLine("Try again");
                     }
                 }
